@@ -110,7 +110,7 @@ async function run(){
             
             const user = req.body;
             console.log("hit the post", user);
-            const result = await productCollection.insertOne(user);
+            const result = await usersCollection.insertOne(user);
 
             console.log(result);
             res.json(result);
