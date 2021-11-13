@@ -31,6 +31,8 @@ async function run(){
 
         const reviewsCollection = database.collection('reviews');
 
+        const usersCollection = database.collection('users');
+
         //GET API
         app.get('/services', async(req,res)=>{
            
@@ -98,6 +100,17 @@ async function run(){
             const service = req.body;
             console.log("hit the post", service);
             const result = await productCollection.insertOne(service);
+
+            console.log(result);
+            res.json(result);
+        })
+
+        //POST API users
+        app.post('/users', async(req,res)=>{
+            
+            const user = req.body;
+            console.log("hit the post", user);
+            const result = await productCollection.insertOne(user);
 
             console.log(result);
             res.json(result);
