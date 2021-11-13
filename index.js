@@ -29,6 +29,8 @@ async function run(){
 
         const orderCollection = database.collection('orders');
 
+        const reviewsCollection = database.collection('reviews');
+
         //GET API
         app.get('/services', async(req,res)=>{
            
@@ -52,6 +54,12 @@ async function run(){
             const cursor = orderCollection.find({});
             const services= await cursor.toArray();
             res.send(services);
+        });
+        // GET review
+        app.get('/reviewpost', async(req,res)=>{
+            const cursor = reviewsCollection.find({});
+            const reviews= await cursor.toArray();
+            res.send(reviews);
         });
 
         //GET myOrder
@@ -101,6 +109,17 @@ async function run(){
             const order = req.body;
             console.log("hit the post", order);
             const result = await orderCollection.insertOne(order);
+
+            console.log(result);
+            res.json(result);
+        })
+
+        //post reviews
+        app.post('/reviewpost', async(req,res)=>{
+            
+            const review = req.body;
+            console.log("hit the post", review);
+            const result = await reviewsCollection.insertOne(review);
 
             console.log(result);
             res.json(result);
