@@ -31,9 +31,8 @@ async function run(){
 
         //GET API
         app.get('/services', async(req,res)=>{
-            const email = req.query.email;
-            const query= {email : email}
-            const cursor = productCollection.find(query);
+           
+            const cursor = productCollection.find({});
             const services= await cursor.toArray();
             res.send(services);
         });
@@ -57,7 +56,9 @@ async function run(){
 
         //GET myOrder
         app.get('/myOrder', async(req,res)=>{
-            const cursor = orderCollection.find({});
+            const email = req.query.email;
+            const query= {email : email}
+            const cursor = orderCollection.find(query);
     
             const users= await cursor.toArray();
     
