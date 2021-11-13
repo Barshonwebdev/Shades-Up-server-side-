@@ -62,7 +62,7 @@ async function run(){
     
             const users= await cursor.toArray();
     
-            res.send(users);
+            res.json(users);
         })
 
         
