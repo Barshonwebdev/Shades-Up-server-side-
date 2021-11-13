@@ -31,14 +31,16 @@ async function run(){
 
         //GET API
         app.get('/services', async(req,res)=>{
-            const cursor = productCollection.find({});
+            const email = req.query.email;
+            const query= {email : email}
+            const cursor = productCollection.find(query);
             const services= await cursor.toArray();
             res.send(services);
         });
 
 
 
-        //GET single package
+        //GET single product
         app.get('/services/:id',async(req,res)=>{
             const id= req.params.id;
             const query= { _id: ObjectId(id)};
@@ -81,7 +83,7 @@ async function run(){
             console.log('load user with id :', id);
             res.send(user);
         })
-        //POST API package
+        //POST API product
         app.post('/services', async(req,res)=>{
             
             const service = req.body;
