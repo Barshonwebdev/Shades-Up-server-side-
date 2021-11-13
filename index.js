@@ -57,7 +57,7 @@ async function run(){
         //GET myOrder
         app.get('/myOrder', async(req,res)=>{
             
-            const cursor = orderCollection.find(query);
+            const cursor = orderCollection.find({});
     
             const users= await cursor.toArray();
     
